@@ -9,8 +9,8 @@ using Repositories.Implementations;
 namespace VideoTapesAPI.Migrations
 {
     [DbContext(typeof(DataBaseContext))]
-    [Migration("20181009143717_upd")]
-    partial class upd
+    [Migration("20181009160915_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -65,6 +65,8 @@ namespace VideoTapesAPI.Migrations
 
                     b.Property<int>("FriendId");
 
+                    b.Property<int?>("Rating");
+
                     b.Property<string>("ReviewInput");
 
                     b.Property<int>("TapeId");
@@ -79,6 +81,8 @@ namespace VideoTapesAPI.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<double?>("AverageRating");
+
                     b.Property<DateTime>("DateCreated");
 
                     b.Property<DateTime>("DateModified");
@@ -86,8 +90,6 @@ namespace VideoTapesAPI.Migrations
                     b.Property<string>("DirectorName");
 
                     b.Property<string>("Eidr");
-
-                    b.Property<double>("Rating");
 
                     b.Property<DateTime>("ReleaseDate");
 

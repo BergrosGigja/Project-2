@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace VideoTapesAPI.Migrations
 {
-    public partial class models : Migration
+    public partial class InitialCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -49,11 +49,32 @@ namespace VideoTapesAPI.Migrations
                         .Annotation("Sqlite:Autoincrement", true),
                     FriendId = table.Column<int>(nullable: false),
                     TapeId = table.Column<int>(nullable: false),
-                    ReviewInput = table.Column<string>(nullable: true)
+                    ReviewInput = table.Column<string>(nullable: true),
+                    Rating = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Reviews", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Tapes",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Title = table.Column<string>(nullable: true),
+                    DirectorName = table.Column<string>(nullable: true),
+                    Type = table.Column<string>(nullable: true),
+                    ReleaseDate = table.Column<DateTime>(nullable: false),
+                    Eidr = table.Column<string>(nullable: true),
+                    AverageRating = table.Column<double>(nullable: true),
+                    DateCreated = table.Column<DateTime>(nullable: false),
+                    DateModified = table.Column<DateTime>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Tapes", x => x.Id);
                 });
         }
 
@@ -67,6 +88,9 @@ namespace VideoTapesAPI.Migrations
 
             migrationBuilder.DropTable(
                 name: "Reviews");
+
+            migrationBuilder.DropTable(
+                name: "Tapes");
         }
     }
 }

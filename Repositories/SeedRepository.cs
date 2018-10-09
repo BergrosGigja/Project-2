@@ -41,7 +41,8 @@ namespace Repositories
                             DateModified = DateTime.Now,
                             Eidr = tape.eidr,
                             ReleaseDate = tape.release_date,
-                            Type = tape.type
+                            Type = tape.type,
+                            AverageRating = null
                                 
                         };
                         _dataBaseContext.Tapes.Add(newVideoTape);

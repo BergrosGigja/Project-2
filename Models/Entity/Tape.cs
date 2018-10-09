@@ -10,7 +10,7 @@ namespace Models.Entity
         public string Type { get; set; }
         public DateTime ReleaseDate { get; set; }
         public string Eidr { get; set; }
-        public double Rating { get; set; }
+        public double? AverageRating { get; set; }
         public DateTime DateCreated { get; set; }
         public DateTime DateModified { get; set; }
     }

@@ -6,5 +6,6 @@ namespace Models.Entity
         public int FriendId { get; set; }
         public int TapeId { get; set; }
         public string ReviewInput { get; set; }
+        public int? Rating { get; set; }
     }
 }
