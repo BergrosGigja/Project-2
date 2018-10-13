@@ -18,6 +18,7 @@ using Repositories.Implementations;
 using Repositories.Interfaces;
 using Services.Implementations;
 using Services.Interfaces;
+using VideoTapesAPI.Exceptions;
 
 namespace VideoTapesAPI
 {
@@ -44,6 +45,7 @@ namespace VideoTapesAPI
             services.AddTransient<ISeedRepository, SeedRepository>();
             services.AddTransient<ISeedService, SeedService>();
             services.AddTransient<ITapeRepository, TapeRepository>();
+            services.AddTransient<ITapeService, TapeService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -58,8 +60,11 @@ namespace VideoTapesAPI
                 app.UseHsts();
             }
 
+            // global exception handler
+            app.ConfigureExceptionHandler();
             app.UseHttpsRedirection();
             app.UseMvc();
+            
             
             // automapper to map entities to Dtos
             AutoMapper.Mapper.Initialize(cfg =>

@@ -20,5 +20,10 @@ namespace Services.Implementations
         {
             return _tapeRepository.GetAllTapes();
         }
+
+        public TapeDetailsDto GetTapeById(int id)
+        {
+            return _tapeRepository.GetTapeById(id);
+        }
     }
 }

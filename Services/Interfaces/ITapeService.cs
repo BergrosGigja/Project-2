@@ -8,5 +8,6 @@ namespace Services.Interfaces
     public interface ITapeService
     {
         IEnumerable<TapeDto> GetAllTapes();
+        TapeDetailsDto GetTapeById(int id);
     }
 }
