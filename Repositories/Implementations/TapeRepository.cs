@@ -7,6 +7,7 @@ using AutoMapper;
 using Models.Dtos;
 using Models.Entity;
 using Models.Exceptions;
+using Models.Input;
 using Remotion.Linq.Clauses;
 using Repositories.Interfaces;
 
@@ -60,6 +61,50 @@ namespace Repositories.Implementations
 
         return tapeDtos;
         }
+
+        public TapeDetailsDto AddNewTape(TapeInputModel tape)
+        {
+            var tapeEntity = Mapper.Map<Tape>(tape);
+            _dataBaseContext.Tapes.Add(tapeEntity);
+            _dataBaseContext.SaveChanges();
+            var tapeDto = Mapper.Map<TapeDetailsDto>(tapeEntity);
+            return tapeDto;
+        }
+
+        public void DeleteTape(int id)
+        {
+            var tapeEntity = (from t in _dataBaseContext.Tapes where id == t.Id select t).FirstOrDefault();
+            if (tapeEntity == null)
+            {
+                throw new ResourceNotFoundException();
+            }
+
+            _dataBaseContext.Remove(tapeEntity);
+            _dataBaseContext.SaveChanges();
+        }
+
+        public TapeDetailsDto UpdateTape(TapeInputModel tape, int id)
+        {
+            var tapeEntity = (from t in _dataBaseContext.Tapes where id == t.Id select t).FirstOrDefault();
+            if (tapeEntity == null)
+            {
+                throw new ResourceNotFoundException();
+            }
+
+            // update the tape with the info given
+            tapeEntity.Eidr = tape.Eidr;
+            tapeEntity.Title = tape.Title;
+            tapeEntity.Type = tape.Type;
+            tapeEntity.DirectorName = tape.DirectorName;
+            tapeEntity.ReleaseDate = tape.ReleaseDate;
+            // database specific
+            tapeEntity.DateModified = DateTime.Now;
+            
+            // return the updated tape
+            var tapeDetailsDto = Mapper.Map<TapeDetailsDto>(tapeEntity);
+            return tapeDetailsDto;
+        }
+
         
     }
 }

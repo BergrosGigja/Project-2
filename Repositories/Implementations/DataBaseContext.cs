@@ -4,7 +4,9 @@ using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 
 namespace Repositories.Implementations
-{
+{/// <summary>
+ /// Data base context
+ /// </summary>
     public class DataBaseContext : DbContext
     {
         public DataBaseContext()

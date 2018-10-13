@@ -1,7 +1,9 @@
 using System;
 
 namespace Models.Exceptions
-{
+{/// <summary>
+ /// exception class to throw if the input model is invalid
+ /// </summary>
     public class ModelFormatException : Exception
     {
         public ModelFormatException() : base("The Model Is Formatted Incorrectly")
