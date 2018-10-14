@@ -42,5 +42,36 @@ namespace Repositories.Interfaces
         /// <param name="id">id of the video tape</param>
         /// <returns></returns>
         TapeDetailsDto UpdateTape(TapeInputModel tape, int id);
+        
+        /// <summary>
+        /// Get get that the user has borrowed
+        /// </summary>
+        /// <param name="friendId">id of the user</param>
+        /// <returns>borrow dto</returns>
+        BorrowDto GetFriendLoans(int? friendId);
+        
+        /// <summary>
+        /// Register when a friend borrowes a video tape
+        /// </summary>
+        /// <param name="tapeId">id of the tape</param>
+        /// <param name="friendId">id of the friend</param>
+        /// <returns>borrow dto</returns>
+        BorrowDto RegisterTapeLoan(int? tapeId, int? friendId);
+        
+        /// <summary>
+        /// deletes a loan for a friend
+        /// </summary>
+        /// <param name="tapeId">id of the tape</param>
+        /// <param name="friendId">id of the friend</param>
+        void DeleteFriendLoan(int? tapeId, int? friendId);
+
+        /// <summary>
+        /// updates existing loan information
+        /// </summary>
+        /// <param name="tapeId">id of the tape</param>
+        /// <param name="friendId">id of the friend</param>
+        /// <param name="borrow">borrow input model from the client</param>
+        /// <returns>updated borrow dto</returns>
+        BorrowDto UpdateLoanForFriend(int? tapeId, int? friendId, BorrowInputModel borrow);
     }
 }

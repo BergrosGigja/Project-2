@@ -49,5 +49,25 @@ namespace Services.Implementations
         {
             return _tapeRepository.UpdateTape(tape, id);
         }
+
+        public BorrowDto GetFriendLoans(int? friendId)
+        {
+            return _tapeRepository.GetFriendLoans(friendId);
+        }
+
+        public BorrowDto RegisterTapeLoan(int? tapeId, int? friendId)
+        {
+            return _tapeRepository.RegisterTapeLoan(tapeId, friendId);
+        }
+
+        public void DeleteFriendLoan(int? tapeId, int? friendId)
+        {
+            _tapeRepository.DeleteFriendLoan(tapeId,friendId);
+        }
+
+        public BorrowDto UpdateLoanForFriend(int? tapeId, int? friendId, BorrowInputModel borrow)
+        {
+            return _tapeRepository.UpdateLoanForFriend(tapeId, friendId, borrow);
+        }
     }
 }
