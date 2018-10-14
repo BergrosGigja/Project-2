@@ -85,6 +85,9 @@ namespace VideoTapesAPI
                     .ForMember(review => review.DateModified, opt => opt.UseValue(DateTime.Now));
                 cfg.CreateMap<Friend, FriendDto>();
                 cfg.CreateMap<Friend, FriendDetailsDto>();
+                cfg.CreateMap<FriendInputModel, Friend>()
+                    .ForMember(friend => friend.DateCreated, opt => opt.UseValue(DateTime.Now))
+                    .ForMember(friend => friend.DateModified, opt => opt.UseValue(DateTime.Now));
             });
         }
     }

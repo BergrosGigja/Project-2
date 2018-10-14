@@ -37,5 +37,38 @@ namespace VideoTapesAPI.Controllers
 
             return Ok(_friendService.GetFriendById((int) id));
         }
+
+        [HttpPost]
+        [Route("api/friends")]
+        public IActionResult AddNewFriend([FromBody]FriendInputModel friend)
+        {
+            Console.WriteLine(friend);
+            if (!ModelState.IsValid)
+            {
+                throw new ModelFormatException();
+            }
+
+            return StatusCode(201,_friendService.AddNewFriend(friend));
+        }
+
+        [HttpDelete]
+        [Route("api/friends/{id:int}")]
+        public IActionResult DeleteFriend(int id)
+        {
+            _friendService.DeleteFriend(id);
+            return StatusCode(204);
+        }
+
+        [HttpPut]
+        [Route("api/friends/{id:int}")]
+        public IActionResult UpdateFriend([FromBody] FriendInputModel friend, int? id)
+        {
+            if (!ModelState.IsValid)
+            {
+                throw new ModelFormatException();
+            }
+
+            return Ok(_friendService.UpdateFriend(friend,(int) id));
+        }
     }
 }

@@ -33,5 +33,20 @@ namespace Services.Implementations
         {
             return _friendRepository.GetFriendById(id);
         }
+
+        public FriendDetailsDto AddNewFriend(FriendInputModel friend)
+        {
+            return _friendRepository.AddNewFriend(friend);
+        }
+
+        public void DeleteFriend(int id)
+        {
+            _friendRepository.DeleteFriend(id);
+        }
+
+        public FriendDetailsDto UpdateFriend(FriendInputModel friend, int id)
+        {
+            return _friendRepository.UpdateFriend(friend, id);
+        }
     }
 }

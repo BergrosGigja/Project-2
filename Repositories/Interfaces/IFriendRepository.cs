@@ -20,6 +20,27 @@ namespace Repositories.Interfaces
         /// <param name="id">id of the friend</param>
         /// <returns>friend details dto for the friend</returns>
         FriendDetailsDto GetFriendById(int id);
+
+        /// <summary>
+        /// Creates new friend
+        /// </summary>
+        /// <param name="friend">friend input model for new friends</param>
+        /// <returns>friend details dto for the new friend</returns>
+        FriendDetailsDto AddNewFriend(FriendInputModel friend);
+
+        /// <summary>
+        /// deletes specific friend
+        /// </summary>
+        /// <param name="id">id of the friend</param>
+        void DeleteFriend(int id);
+        
+        /// <summary>
+        /// Updates specific friend
+        /// </summary>
+        /// <param name="friend">friend input model</param>
+        /// <param name="id">id of the friend</param>
+        /// <returns></returns>
+        FriendDetailsDto UpdateFriend(FriendInputModel friend, int id);
         
     }
 }
