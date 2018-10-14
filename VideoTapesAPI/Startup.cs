@@ -49,6 +49,8 @@ namespace VideoTapesAPI
             services.AddTransient<ITapeService, TapeService>();
             services.AddTransient<ITapeReviewRepository, TapeReviewRepository>();
             services.AddTransient<ITapeReviewService, TapeReviewService>();
+            services.AddTransient<IFriendRepository, FriendRepository>();
+            services.AddTransient<IFriendService, FriendService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -81,7 +83,8 @@ namespace VideoTapesAPI
                 cfg.CreateMap<ReviewInputModel, Review>()
                     .ForMember(review => review.DateCreated, opt => opt.UseValue(DateTime.Now))
                     .ForMember(review => review.DateModified, opt => opt.UseValue(DateTime.Now));
-
+                cfg.CreateMap<Friend, FriendDto>();
+                cfg.CreateMap<Friend, FriendDetailsDto>();
             });
         }
     }
