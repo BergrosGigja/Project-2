@@ -37,6 +37,10 @@ namespace VideoTapesAPI.Exceptions
                     {
                         statusCode = (int) HttpStatusCode.BadRequest;
                     }
+                    else if (exception is ResourceAlreadyExists)
+                    {
+                        statusCode = (int) HttpStatusCode.Conflict;
+                    }
 
                     context.Response.ContentType = "application/json";
                     context.Response.StatusCode = statusCode;
