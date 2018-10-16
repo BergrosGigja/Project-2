@@ -165,6 +165,7 @@ namespace Repositories.Implementations
             borrowEntity.BorrowDate = borrow.BorrowDate;
             borrowEntity.FriendId = borrow.FriendId;
             borrowEntity.ReturnDate = borrow.ReturnDate;
+            
             _dataBaseContext.SaveChanges();
             
             // return update borrow dto
