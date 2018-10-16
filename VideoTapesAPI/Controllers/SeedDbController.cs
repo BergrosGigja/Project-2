@@ -3,7 +3,9 @@ using Services.Implementations;
 using Services.Interfaces;
 
 namespace VideoTapesAPI.Controllers
-{
+{/// <summary>
+ /// The controller that was used to only to seed the database in the beginning
+ /// </summary>
     public class SeedDbController : Controller
     {
         private readonly ISeedService _seedService;

@@ -7,7 +7,9 @@ using Microsoft.AspNetCore.Http;
 using Models.Exceptions;
 
 namespace VideoTapesAPI.Exceptions
-{
+{/// <summary>
+ /// This class handles exceptions and returns the appropriate status code
+ /// </summary>
     public static class ExceptionHandler
     {
         public static void ConfigureExceptionHandler(this IApplicationBuilder app)

@@ -1,7 +1,9 @@
 using System;
 
 namespace Models.DbSeed
-{
+{/// <summary>
+ /// model that was only used to seed the database
+ /// </summary>
     public class SeedVideoTapes
     {
         public int id { get; set; }
