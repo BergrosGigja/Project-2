@@ -4,12 +4,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using AutoMapper;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Models.Dtos;
 using Models.Entity;
 using Models.Exceptions;
 using Models.Input;
 using Remotion.Linq.Clauses;
 using Repositories.Interfaces;
+
+
 
 namespace Repositories.Implementations
 {
@@ -54,7 +58,7 @@ namespace Repositories.Implementations
             {
                 throw new ResourceNotFoundException();
             }
-
+            
             return friendDtos;
         }
 
@@ -99,6 +103,51 @@ namespace Repositories.Implementations
             var friendDetailsDto = Mapper.Map<FriendDetailsDto>(friendEntity);
             return friendDetailsDto;
         }
+
+        public IEnumerable<FriendDto> GetLoanReportForFriends(DateTime loanDate)
+        {
+            var friendEntities = (from f in _dataBaseContext.Friends
+                join b in _dataBaseContext.Borrows on
+                    f.Id equals b.FriendId
+                where loanDate >= b.BorrowDate && (b.ReturnDate == null || loanDate < b.ReturnDate)
+                select f).ToList();
+            
+            var friendDto = Mapper.Map<IList<Friend>, IList<FriendDto>>(friendEntities);
+            return friendDto;
+        }
+
+        public IEnumerable<FriendDto> GetLoanReportForMoreThanXDays(int? loanDuration)
+        {
+            
+            var lstfriends = (from b in _dataBaseContext.Friends select b).ToList();
+            var lstborrow = (from b in _dataBaseContext.Borrows select b).ToList();
+            var friendEndities = (from f in lstfriends
+                join b in lstborrow on
+                    f.Id equals b.FriendId
+                where b.ReturnDate == null &&
+                      loanDuration < DateTime.Now.Subtract(b.BorrowDate).TotalDays
+                select f).Distinct().ToList();
+            
         
+            var friendDto = Mapper.Map<IList<Friend>, IList<FriendDto>>(friendEndities);
+            return friendDto;
+
+        }
+
+        public IEnumerable<FriendDto> GetLoanReportForMoreThanXDaysAndDate(int? loanDuration, DateTime loanDate)
+        {
+            var friends = (from f in _dataBaseContext.Friends select f).ToList();
+            var borrow = (from b in _dataBaseContext.Borrows select b).ToList();
+            var friendEntities = (from f in friends
+                join b in borrow on
+                    f.Id equals b.FriendId
+                where loanDate >= b.BorrowDate && loanDuration < (loanDate - b.BorrowDate).TotalDays &&
+                      (b.ReturnDate == null || loanDate < b.ReturnDate)
+                select f).Distinct().ToList();
+            
+            var friendDto = Mapper.Map<IList<Friend>, IList<FriendDto>>(friendEntities);
+            return friendDto;
+            
+        }
     }
 }

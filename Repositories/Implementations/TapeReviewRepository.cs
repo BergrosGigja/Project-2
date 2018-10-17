@@ -92,6 +92,7 @@ namespace Repositories.Implementations
             _dataBaseContext.SaveChanges();
         }
 
+
         private void CheckIfUserOrTapeExist(int? tapeId, int? friendId)
         {
             // first check if friend or tape exists
