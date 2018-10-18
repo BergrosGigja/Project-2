@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Models.Dtos;
@@ -41,5 +42,27 @@ namespace Services.Interfaces
         /// <param name="id">Is the id of the friend</param>
         /// <returns>Updated friend details dto object</returns>
         FriendDetailsDto UpdateFriend(FriendInputModel friend, int id);
+        
+        /// <summary>
+        /// Report for friends that have tapes on loan since specific date
+        /// </summary>
+        /// <param name="loanDate">date to query</param>
+        /// <returns>list of friends dto</returns>
+        IEnumerable<FriendDto> GetLoanReportForFriends(DateTime loanDate);
+        
+        /// <summary>
+        /// Get friends that have had tapes on loan for more than X days
+        /// </summary>
+        /// <param name="loanDuration">how many days</param>
+        /// <returns>list of friend dto</returns>
+        IEnumerable<FriendDto> GetLoanReportForMoreThanXDays(int? loanDuration);
+        
+        /// <summary>
+        /// Get friends that have had tapes on loan for more than x days as of specific date
+        /// </summary>
+        /// <param name="loanDuration">duration to query for</param>
+        /// <param name="loanDate">date to query for</param>
+        /// <returns>list of friend dto</returns>
+        IEnumerable<FriendDto> GetLoanReportForMoreThanXDaysAndDate(int? loanDuration, DateTime loanDate);
     }
 }

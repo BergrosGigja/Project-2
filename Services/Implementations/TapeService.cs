@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Models.Dtos;
 using Models.Entity;
@@ -60,14 +61,19 @@ namespace Services.Implementations
             return _tapeRepository.RegisterTapeLoan(tapeId, friendId);
         }
 
-        public void DeleteFriendLoan(int? tapeId, int? friendId)
+        public void ReturnTape(int? tapeId, int? friendId)
         {
-            _tapeRepository.DeleteFriendLoan(tapeId,friendId);
+            _tapeRepository.ReturnTape(tapeId,friendId);
         }
 
         public BorrowDto UpdateLoanForFriend(int? tapeId, int? friendId, BorrowInputModel borrow)
         {
             return _tapeRepository.UpdateLoanForFriend(tapeId, friendId, borrow);
+        }
+
+        public IEnumerable<TapeDto> GetLoanReportForTapes(DateTime loanDate)
+        {
+            return _tapeRepository.GetLoanReportForTapes(loanDate);
         }
     }
 }

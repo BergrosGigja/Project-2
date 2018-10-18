@@ -19,15 +19,29 @@ namespace VideoTapesAPI.Controllers
         }
         
         [HttpGet]
-        [Route("api/friends")]
-        public IActionResult GetAllFriends()
-        {
+        [Route("api/users")]
+        public IActionResult GetAllFriends([FromQuery]DateTime? loanDate = null, [FromQuery]int? loanDuration = 0)
+        {   // we go here if the loanDuration query parameter is set 
+            if (loanDuration != 0)
+            {
+                return Ok(_friendService.GetLoanReportForMoreThanXDays(loanDuration));
+            }
+            // we go here if the loanDate query parameter is set
+            if (loanDate != null)
+            {
+                // we go here if loanDate AND loanDuration query parameters are set
+                if (loanDuration != 0)
+                {
+                    return Ok(_friendService.GetLoanReportForMoreThanXDaysAndDate(loanDuration, (DateTime) loanDate));
+                }
+                return Ok(_friendService.GetLoanReportForFriends((DateTime) loanDate));
+            }
             
             return Ok(_friendService.GetAllFriends());
         }
 
         [HttpGet]
-        [Route("api/friends/{id:int}", Name = "GetFriendById")]
+        [Route("api/users/{id:int}", Name = "GetFriendById")]
         public IActionResult GetFriendById(int? id)
         {
             if (id == null)
@@ -39,7 +53,7 @@ namespace VideoTapesAPI.Controllers
         }
 
         [HttpPost]
-        [Route("api/friends")]
+        [Route("api/users")]
         public IActionResult AddNewFriend([FromBody]FriendInputModel friend)
         {
             Console.WriteLine(friend);
@@ -52,7 +66,7 @@ namespace VideoTapesAPI.Controllers
         }
 
         [HttpDelete]
-        [Route("api/friends/{id:int}")]
+        [Route("api/users/{id:int}")]
         public IActionResult DeleteFriend(int id)
         {
             _friendService.DeleteFriend(id);
@@ -60,7 +74,7 @@ namespace VideoTapesAPI.Controllers
         }
 
         [HttpPut]
-        [Route("api/friends/{id:int}")]
+        [Route("api/users/{id:int}")]
         public IActionResult UpdateFriend([FromBody] FriendInputModel friend, int? id)
         {
             if (!ModelState.IsValid)
