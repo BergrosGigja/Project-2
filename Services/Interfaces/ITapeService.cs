@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Models.Dtos;
@@ -55,11 +56,11 @@ namespace Services.Interfaces
         BorrowDto RegisterTapeLoan(int? tapeId, int? friendId);
         
         /// <summary>
-        /// deletes a loan for a friend
+        /// returns a tape
         /// </summary>
         /// <param name="tapeId">id of the tape</param>
         /// <param name="friendId">id of the friend</param>
-        void DeleteFriendLoan(int? tapeId, int? friendId);
+        void ReturnTape(int? tapeId, int? friendId);
         
         /// <summary>
         /// updates existing loan information
@@ -69,5 +70,12 @@ namespace Services.Interfaces
         /// <param name="borrow">borrow input model from the client</param>
         /// <returns>updated borrow dto</returns>
         BorrowDto UpdateLoanForFriend(int? tapeId, int? friendId, BorrowInputModel borrow);
+        
+        /// <summary>
+        /// Report what tapes or on loan dating back from the date inputted
+        /// </summary>
+        /// <param name="loanDate">date to base the query on</param>
+        /// <returns>list of tape dto</returns>
+        IEnumerable<TapeDto> GetLoanReportForTapes(DateTime loanDate);
     }
 }

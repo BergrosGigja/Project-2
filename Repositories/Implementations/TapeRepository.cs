@@ -135,7 +135,7 @@ namespace Repositories.Implementations
             return borrowDto;
         }
 
-        public void DeleteFriendLoan(int? tapeId, int? friendId)
+        public void ReturnTape(int? tapeId, int? friendId)
         {
             var borrowEntity = (from b in _dataBaseContext.Borrows
                 where tapeId == b.TapeId && friendId == b.FriendId
@@ -145,8 +145,7 @@ namespace Repositories.Implementations
             {
                 throw new ResourceNotFoundException();
             }
-
-            _dataBaseContext.Remove(borrowEntity);
+            borrowEntity.ReturnDate = DateTime.Now;
             _dataBaseContext.SaveChanges();
         }
 
@@ -165,11 +164,25 @@ namespace Repositories.Implementations
             borrowEntity.BorrowDate = borrow.BorrowDate;
             borrowEntity.FriendId = borrow.FriendId;
             borrowEntity.ReturnDate = borrow.ReturnDate;
+            
             _dataBaseContext.SaveChanges();
             
             // return update borrow dto
             var borrowDto = Mapper.Map<BorrowDto>(borrowEntity);
             return borrowDto;
+        }
+        
+        
+        public IEnumerable<TapeDto> GetLoanReportForTapes(DateTime loanDate)
+        {
+            var tapesEntities = (from t in _dataBaseContext.Tapes
+                join b in _dataBaseContext.Borrows on
+                    t.Id equals b.TapeId
+                where loanDate >= b.BorrowDate && (b.ReturnDate == null || loanDate < b.ReturnDate)
+                select t).ToList();
+
+            var tapesDto = Mapper.Map<IList<Tape>, IList<TapeDto>>(tapesEntities);
+            return tapesDto;
         }
 
         // private method to check if tape or user exists

@@ -20,10 +20,15 @@ namespace VideoTapesAPI.Controllers
         
         [HttpGet]
         [Route("api/tapes")]
-        public IActionResult GetAllTapes()
+        public IActionResult GetAllTapes([FromQuery]DateTime? loanDate = null)
         {
+            if (loanDate != null)
+            {
+                return Ok(_tapeService.GetLoanReportForTapes((DateTime)loanDate));
+            }
             
-            return Ok(_tapeService.GetAllTapes());
+            return Ok(_tapeService.GetAllTapes());    
+            
         }
 
         [HttpGet]
@@ -70,5 +75,6 @@ namespace VideoTapesAPI.Controllers
 
             return Ok(_tapeService.UpdateTape(tape,(int) id));
         }
+        
     }
 }
