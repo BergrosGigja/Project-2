@@ -14,7 +14,6 @@ using Remotion.Linq.Clauses;
 using Repositories.Interfaces;
 
 
-
 namespace Repositories.Implementations
 {
     public class FriendRepository : IFriendRepository

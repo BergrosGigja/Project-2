@@ -56,7 +56,6 @@ namespace VideoTapesAPI.Controllers
         [Route("api/users")]
         public IActionResult AddNewFriend([FromBody]FriendInputModel friend)
         {
-            Console.WriteLine(friend);
             if (!ModelState.IsValid)
             {
                 throw new ModelFormatException();

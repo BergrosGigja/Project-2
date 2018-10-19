@@ -49,20 +49,5 @@ namespace Services.Implementations
         {
             return _friendRepository.UpdateFriend(friend, id);
         }
-
-        public IEnumerable<FriendDto> GetLoanReportForFriends(DateTime loanDate)
-        {
-            return _friendRepository.GetLoanReportForFriends(loanDate);
-        }
-
-        public IEnumerable<FriendDto> GetLoanReportForMoreThanXDays(int? loanDuration)
-        {
-            return _friendRepository.GetLoanReportForMoreThanXDays(loanDuration);
-        }
-
-        public IEnumerable<FriendDto> GetLoanReportForMoreThanXDaysAndDate(int? loanDuration, DateTime loanDate)
-        {
-            return _friendRepository.GetLoanReportForMoreThanXDaysAndDate(loanDuration, loanDate);
-        }
     }
 }
