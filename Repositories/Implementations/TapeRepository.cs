@@ -45,9 +45,10 @@ namespace Repositories.Implementations
                 Type = t.Type,
                 AverageRating = t.AverageRating,
                 BorrowHistory = (from b in _dataBaseContext.Borrows
-                    where b.Id == t.Id
+                    where b.TapeId == t.Id
                     select new BorrowDto
                     {
+                        Id = b.Id,
                         BorrowDate = b.BorrowDate,
                         FriendId = b.FriendId,
                         ReturnDate = b.ReturnDate,
@@ -105,7 +106,7 @@ namespace Repositories.Implementations
             return tapeDetailsDto;
         }
 
-        public BorrowDto GetFriendLoans(int? friendId)
+        public IEnumerable<BorrowDto> GetFriendLoans(int? friendId)
         {
             // check if user exists
             var friendEntity = (from b in _dataBaseContext.Friends where friendId == b.Id select b).FirstOrDefault();
@@ -115,7 +116,7 @@ namespace Repositories.Implementations
             }
             // get loans
             var borrowEntity = (from b in _dataBaseContext.Borrows where friendId == b.FriendId select b).ToList();
-            var borrowDto = Mapper.Map<BorrowDto>(borrowEntity);
+            var borrowDto = Mapper.Map<IList<Borrow>, IList<BorrowDto>>(borrowEntity);
             return borrowDto;
         }
 

@@ -51,7 +51,7 @@ namespace Services.Implementations
             return _tapeRepository.UpdateTape(tape, id);
         }
 
-        public BorrowDto GetFriendLoans(int? friendId)
+        public IEnumerable<BorrowDto> GetFriendLoans(int? friendId)
         {
             return _tapeRepository.GetFriendLoans(friendId);
         }

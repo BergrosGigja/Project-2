@@ -46,11 +46,11 @@ namespace Repositories.Interfaces
         TapeDetailsDto UpdateTape(TapeInputModel tape, int id);
         
         /// <summary>
-        /// Get get that the user has borrowed
+        /// Get tapes that the user has borrowed
         /// </summary>
         /// <param name="friendId">id of the user</param>
         /// <returns>borrow dto</returns>
-        BorrowDto GetFriendLoans(int? friendId);
+        IEnumerable<BorrowDto> GetFriendLoans(int? friendId);
         
         /// <summary>
         /// Register when a friend borrowes a video tape

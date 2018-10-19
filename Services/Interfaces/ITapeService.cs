@@ -45,7 +45,8 @@ namespace Services.Interfaces
         /// </summary>
         /// <param name="friendId">id of the user</param>
         /// <returns>borrow information dto</returns>
-        BorrowDto GetFriendLoans(int? friendId);
+        
+        IEnumerable<BorrowDto> GetFriendLoans(int? friendId);
 
         /// <summary>
         /// Register loan for a friend
