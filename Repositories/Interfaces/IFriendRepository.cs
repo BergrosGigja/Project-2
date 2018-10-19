@@ -44,6 +44,13 @@ namespace Repositories.Interfaces
         FriendDetailsDto UpdateFriend(FriendInputModel friend, int id);
 
         /// <summary>
+        /// Recommendation for specific friend
+        /// </summary>
+        /// <param name="id">id of the friend</param>
+        /// <returns></returns>
+        IEnumerable<TapeDto> RecommendationForFriend(int id);
+
+        /// <summary>
         /// Report for friends that have tapes on loan since specific date
         /// </summary>
         /// <param name="loanDate">date to query</param>

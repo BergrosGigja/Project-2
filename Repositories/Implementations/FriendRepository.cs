@@ -47,6 +47,7 @@ namespace Repositories.Implementations
                     where b.FriendId == f.Id
                     select new BorrowDto
                     {
+                        Id = b.Id,
                         BorrowDate = b.BorrowDate,
                         FriendId = f.Id,
                         ReturnDate = b.ReturnDate,
@@ -101,6 +102,15 @@ namespace Repositories.Implementations
             // return the updated friend
             var friendDetailsDto = Mapper.Map<FriendDetailsDto>(friendEntity);
             return friendDetailsDto;
+        }
+
+        public IEnumerable<TapeDto> RecommendationForFriend(int id) 
+        {
+            //Tapes the user already borrowed
+            var borrowed = (from b in _dataBaseContext.Borrows where id == b.FriendId select b.TapeId).ToList();
+            var tapes = (from t in _dataBaseContext.Tapes where t.AverageRating != null && !(borrowed.Contains(t.Id)) select t).OrderByDescending(x => x).ToList();
+            var result = Mapper.Map<IList<Tape>, IEnumerable<TapeDto>>(tapes);
+            return result;
         }
 
         public IEnumerable<FriendDto> GetLoanReportForFriends(DateTime loanDate)

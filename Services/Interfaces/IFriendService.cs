@@ -42,6 +42,13 @@ namespace Services.Interfaces
         /// <param name="id">Is the id of the friend</param>
         /// <returns>Updated friend details dto object</returns>
         FriendDetailsDto UpdateFriend(FriendInputModel friend, int id);
+
+        /// <summary>
+        /// Recommended tapes for a user
+        /// </summary>
+        /// <param name="id">Is the id of the friend</param>
+        /// <returns>returns tape dto object</returns>
+        IEnumerable<TapeDto> RecommendationForFriend(int id);
         
         /// <summary>
         /// Report for friends that have tapes on loan since specific date
