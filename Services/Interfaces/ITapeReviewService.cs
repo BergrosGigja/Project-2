@@ -20,7 +20,7 @@ namespace Services.Interfaces
         /// </summary>
         /// <param name="tapeId">id for the video tape</param>
         /// <returns>review dto object</returns>
-        ReviewDto GetReviewForTape(int? tapeId);
+        IEnumerable<ReviewDto> GetReviewForTape(int? tapeId);
         
         /// <summary>
         /// Get review for specific tape and friend

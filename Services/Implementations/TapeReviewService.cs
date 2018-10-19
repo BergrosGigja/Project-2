@@ -21,7 +21,7 @@ namespace Services.Implementations
             return _tapeReviewsRepository.GetReviewForAllTapes();
         }
 
-        public ReviewDto GetReviewForTape(int? tapeId)
+        public IEnumerable<ReviewDto> GetReviewForTape(int? tapeId)
         {
             return _tapeReviewsRepository.GetReviewForTape((int)tapeId);
         }
