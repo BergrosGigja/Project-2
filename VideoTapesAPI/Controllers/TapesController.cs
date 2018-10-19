@@ -47,7 +47,6 @@ namespace VideoTapesAPI.Controllers
         [Route("api/tapes")]
         public IActionResult AddNewTape([FromBody]TapeInputModel tape)
         {
-            Console.WriteLine(tape);
             if (!ModelState.IsValid)
             {
                 throw new ModelFormatException();

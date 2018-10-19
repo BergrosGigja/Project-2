@@ -50,6 +50,11 @@ namespace Services.Implementations
             return _friendRepository.UpdateFriend(friend, id);
         }
 
+        public IEnumerable<TapeDto> RecommendationForFriend(int id)
+        {
+            return _friendRepository.RecommendationForFriend(id);
+        }
+
         public IEnumerable<FriendDto> GetLoanReportForFriends(DateTime loanDate)
         {
             return _friendRepository.GetLoanReportForFriends(loanDate);

@@ -21,8 +21,7 @@ namespace Models.Input
         /// <summary>
         /// type of the video tape
         /// </summary>
-        [Required (ErrorMessage =
-            "Invalid type, must be VHS or Betamax")]
+        [Required (ErrorMessage = "Invalid type, must be VHS or Betamax")]
         [RegularExpression("(VHS)|(Betamax)")]
         public string Type { get; set; }
         

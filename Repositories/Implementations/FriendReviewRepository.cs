@@ -10,37 +10,28 @@ using Repositories.Interfaces;
 
 namespace Repositories.Implementations
 {
-    public class TapeReviewRepository : ITapeReviewRepository
+    public class FriendReviewRepository : IFriendReviewRepository
     {
         private readonly DataBaseContext _dataBaseContext;
 
-        public TapeReviewRepository(DataBaseContext db)
+        public FriendReviewRepository(DataBaseContext db)
         {
             _dataBaseContext = db;
         }
         
-        public IEnumerable<ReviewDto> GetReviewForAllTapes()
+        public IEnumerable<ReviewDto> GetReviewByUserForAllTapes(int? friendId)
         {
-            var reviewEntity = _dataBaseContext.Reviews.ToList();
-            var reviewDto = Mapper.Map<IList<Review>, IList<ReviewDto>>(reviewEntity);
-            return reviewDto;
-        }
-
-        public IEnumerable<ReviewDto> GetReviewForTape(int tapeId)
-        {
-            // first check if tape exists
-            var tapeEntity = (from t in _dataBaseContext.Tapes where tapeId == t.Id select t).FirstOrDefault();
-            if (tapeEntity == null)
+            var friendEntity = (from f in _dataBaseContext.Friends where friendId == f.Id select f).FirstOrDefault();
+            if (friendEntity == null)
             {
                 throw new ResourceNotFoundException();
             }
-            var reviewEntity = (from r in _dataBaseContext.Reviews where tapeId == r.TapeId select r).ToList();
-
+            var reviewEntity = (from r in _dataBaseContext.Reviews where friendId == r.FriendId select r).ToList();
             var reviewDto = Mapper.Map<IList<Review>, IList<ReviewDto>>(reviewEntity);
             return reviewDto;
         }
 
-        public ReviewDto GetReviewForFriend(int? tapeId, int? friendId)
+        public ReviewDto GetReviewByUserForTape(int? friendId, int? tapeId)
         {
             CheckIfUserOrTapeExist(tapeId, friendId);
             
@@ -52,7 +43,26 @@ namespace Repositories.Implementations
             return reviewDto;
         }
 
-        public ReviewDto UpdateReviewForFriend(int? tapeId, int? friendId, ReviewInputModel review)
+        public ReviewDto AddNewReview(int? friendId, int? tapeId, ReviewInputModel review)
+        {
+            CheckIfUserOrTapeExist(tapeId, friendId);
+
+            var reviewEntity = new Review
+            {
+                FriendId = (int) friendId,
+                TapeId = (int) tapeId,
+                Rating = (int) review.Rating,
+                ReviewInput = review.ReviewInput
+            };
+
+            _dataBaseContext.Reviews.Add(reviewEntity);
+            _dataBaseContext.SaveChanges();
+            var reviewDto = Mapper.Map<ReviewDto>(reviewEntity);
+            updateTapeRating(tapeId);
+            return reviewDto;
+        }
+
+        public ReviewDto UpdateReview(int? friendId, int? tapeId, ReviewInputModel review)
         {
             CheckIfUserOrTapeExist(tapeId, friendId);
 
@@ -63,20 +73,21 @@ namespace Repositories.Implementations
             if (reviewEntity == null)
             {
                 throw new ResourceNotFoundException();
-            }
-             
+            };
+
             // make the changes
+            reviewEntity.Rating = review.Rating;
             reviewEntity.ReviewInput = review.ReviewInput;
-            //database specific
+            // database specific
             reviewEntity.DateModified = DateTime.Now;
             _dataBaseContext.SaveChanges();
-
+            // return the updated friend
             var reviewDto = Mapper.Map<ReviewDto>(reviewEntity);
             updateTapeRating(tapeId);
             return reviewDto;
         }
 
-        public void DeleteReviewForFriend(int? tapeId, int? friendId)
+        public void DeleteReview(int? friendId, int? tapeId)
         {
             CheckIfUserOrTapeExist(tapeId, friendId);
 
@@ -93,7 +104,6 @@ namespace Repositories.Implementations
             _dataBaseContext.SaveChanges();
             updateTapeRating(tapeId);
         }
-
 
         private void CheckIfUserOrTapeExist(int? tapeId, int? friendId)
         {

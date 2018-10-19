@@ -56,7 +56,6 @@ namespace VideoTapesAPI.Controllers
         [Route("api/users")]
         public IActionResult AddNewFriend([FromBody]FriendInputModel friend)
         {
-            Console.WriteLine(friend);
             if (!ModelState.IsValid)
             {
                 throw new ModelFormatException();
@@ -83,6 +82,17 @@ namespace VideoTapesAPI.Controllers
             }
 
             return Ok(_friendService.UpdateFriend(friend,(int) id));
+        }
+
+        [HttpGet]
+        [Route("api/users/{id:int}/recommendation")]
+        public IActionResult RecommendationForFriend(int? id)
+        {
+            if (id == null)
+            {
+                throw new ResourceNotFoundException();
+            }
+            return Ok(_friendService.RecommendationForFriend((int) id));
         }
     }
 }

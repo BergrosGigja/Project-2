@@ -49,6 +49,8 @@ namespace VideoTapesAPI
             services.AddTransient<ITapeService, TapeService>();
             services.AddTransient<ITapeReviewRepository, TapeReviewRepository>();
             services.AddTransient<ITapeReviewService, TapeReviewService>();
+            services.AddTransient<IFriendReviewRepository, FriendReviewRepository>();
+            services.AddTransient<IFriendReviewService, FriendReviewService>();
             services.AddTransient<IFriendRepository, FriendRepository>();
             services.AddTransient<IFriendService, FriendService>();
         }

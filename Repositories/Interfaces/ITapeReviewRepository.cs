@@ -19,7 +19,7 @@ namespace Repositories.Interfaces
         /// </summary>
         /// <param name="tapeId">id of the video tape</param>
         /// <returns>review dto</returns>
-        ReviewDto GetReviewForTape(int tapeId);
+        IEnumerable<ReviewDto> GetReviewForTape(int tapeId);
         
         /// <summary>
         /// Get review for a specific video tape and friend
