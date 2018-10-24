@@ -108,8 +108,26 @@ namespace Repositories.Implementations
         {
             //Tapes the user already borrowed
             var borrowed = (from b in _dataBaseContext.Borrows where id == b.FriendId select b.TapeId).ToList();
-            var tapes = (from t in _dataBaseContext.Tapes where t.AverageRating != null && !(borrowed.Contains(t.Id)) select t).OrderByDescending(x => x).ToList();
-            var result = Mapper.Map<IList<Tape>, IEnumerable<TapeDto>>(tapes);
+            var tapes = (from t in _dataBaseContext.Tapes where t.AverageRating != null && !(borrowed.Contains(t.Id)) select t).OrderByDescending(x => x).Take(5).ToList();
+
+            //If less then 5 tapes are rated, the user gets random movie recommendations
+            if(tapes.Count() < 5)
+            {
+                Random rnd = new Random();
+                int need = 5 - tapes.Count();
+                var tapeIds = (from i in _dataBaseContext.Tapes select i.Id).ToList();
+                for(int i = 0; i < need;)
+                {
+                    var ran = rnd.Next(tapeIds.Min(), tapeIds.Max());
+                    var randomTape = (from rt in _dataBaseContext.Tapes where rt.Id == ran select rt).FirstOrDefault();
+                    if(!tapes.Contains(randomTape))
+                    {
+                        tapes.Add(randomTape);
+                        i++;
+                    }
+                }
+            }
+            var result = Mapper.Map<IEnumerable<Tape>, IEnumerable<TapeDto>>(tapes);
             return result;
         }
 
