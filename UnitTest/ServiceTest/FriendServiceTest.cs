@@ -15,6 +15,7 @@ using Services.Interfaces;
 
 namespace UnitTest.ServiceTest
 {
+    [TestClass]
     public class FriendServiceTest
     {
         private Mock<IFriendRepository> _friendRepositoryMock;
@@ -144,8 +145,14 @@ namespace UnitTest.ServiceTest
         public void RecommendationForFriend_TestingRecommendation() 
         {
             // arrange
+            int friendId = 1;
+            _friendRepositoryMock.Setup(method => method.RecommendationForFriend(friendId));
+
             // act
+            _friendService.RecommendationForFriend(friendId);
+
             // assert
+            _friendRepositoryMock.Verify(x => x.RecommendationForFriend(friendId), Times.Once);
         }
 
     }
