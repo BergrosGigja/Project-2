@@ -40,6 +40,10 @@ namespace Repositories.Implementations
                 select r).FirstOrDefault();
 
             var reviewDto = Mapper.Map<ReviewDto>(reviewEntity);
+            if (reviewDto == null)
+            {
+                throw new ResourceNotFoundException();
+            }
             return reviewDto;
         }
 

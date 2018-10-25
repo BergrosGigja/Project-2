@@ -1,0 +1,3423 @@
+{
+	"info": {
+		"_postman_id": "170dc29c-aa04-4404-b7e4-46800ebf13fd",
+		"name": "IntegrationTest",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Tapes CRUD",
+			"item": [
+				{
+					"name": "All Tapes",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "32be85c1-e763-46a1-9654-97e20486a22d",
+								"exec": [
+									"pm.test(\"Response is 200 OK\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept-Language",
+								"value": "is",
+								"disabled": true
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "radiation",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \r\n    \"Title\": \"Silence of The Lambs\",\r\n    \"DirectorName\": \"Jonathan Demme\",\r\n    \"Type\": \"VHS\",\r\n    \"ReleaseDate\": \"1991-01-01\",\r\n    \"Eidr\": \"10.5240/D9D1-E514-5FD2-8941-9225-I\"\r\n}"
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/tapes",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"tapes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET tape by id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "32be85c1-e763-46a1-9654-97e20486a22d",
+								"exec": [
+									"pm.test(\"Response is 200 OK\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept-Language",
+								"value": "is",
+								"disabled": true
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "radiation",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \r\n    \"Title\": \"Silence of The Lambs\",\r\n    \"DirectorName\": \"Jonathan Demme\",\r\n    \"Type\": \"VHS\",\r\n    \"ReleaseDate\": \"1991-01-01\",\r\n    \"Eidr\": \"10.5240/D9D1-E514-5FD2-8941-9225-I\"\r\n}"
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/tapes/1",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"tapes",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST Create Tape",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "32be85c1-e763-46a1-9654-97e20486a22d",
+								"exec": [
+									"pm.test(\"Response is 201 OK\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									"",
+									"var data = JSON.parse(responseBody);",
+									"pm.globals.set(\"newTapeId\", data.id);",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept-Language",
+								"value": "is",
+								"disabled": true
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "radiation",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \r\n    \"Title\": \"Silence of The Lambs\",\r\n    \"DirectorName\": \"Jonathan Demme\",\r\n    \"Type\": \"VHS\",\r\n    \"ReleaseDate\": \"1991-01-01\",\r\n    \"Eidr\": \"10.5240/D9D1-E514-5FD2-8941-9225-I\"\r\n}"
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/tapes/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"tapes",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT Change type",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "32be85c1-e763-46a1-9654-97e20486a22d",
+								"exec": [
+									"pm.test(\"Response is 200 OK\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"var data = JSON.parse(responseBody);",
+									"tests[\"Test if now Betamax\"] = data.type === \"Betamax\";",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept-Language",
+								"value": "is",
+								"disabled": true
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "radiation",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \r\n    \"Title\": \"Silence of The Lambs\",\r\n    \"DirectorName\": \"Jonathan Demme\",\r\n    \"Type\": \"Betamax\",\r\n    \"ReleaseDate\": \"1991-01-01\",\r\n    \"Eidr\": \"10.5240/D9D1-E514-5FD2-8941-9225-I\"\r\n}"
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/tapes/{{newTapeId}}",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"tapes",
+								"{{newTapeId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE Tape",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "32be85c1-e763-46a1-9654-97e20486a22d",
+								"exec": [
+									"pm.test(\"Response is 204 OK\", function () {",
+									"    pm.response.to.have.status(204);",
+									"});",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept-Language",
+								"value": "is",
+								"disabled": true
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "radiation",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/tapes/{{newTapeId}}",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"tapes",
+								"{{newTapeId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Assert tape is not found",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "32be85c1-e763-46a1-9654-97e20486a22d",
+								"exec": [
+									"pm.test(\"Response is 404 OK\", function () {",
+									"    pm.response.to.have.status(404);",
+									"});",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept-Language",
+								"value": "is",
+								"disabled": true
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "radiation",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/tapes/{{newTapeId}}",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"tapes",
+								"{{newTapeId}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Users CRUD",
+			"item": [
+				{
+					"name": "GET All users",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "32be85c1-e763-46a1-9654-97e20486a22d",
+								"exec": [
+									"pm.test(\"Response is 200 OK\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept-Language",
+								"value": "is",
+								"disabled": true
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "radiation",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/users",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET User by id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "32be85c1-e763-46a1-9654-97e20486a22d",
+								"exec": [
+									"pm.test(\"Response is 200 OK\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept-Language",
+								"value": "is",
+								"disabled": true
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "radiation",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/users/1",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"users",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST Create User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "32be85c1-e763-46a1-9654-97e20486a22d",
+								"exec": [
+									"pm.test(\"Response is 201 OK\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									"",
+									"var data = JSON.parse(responseBody);",
+									"pm.globals.set(\"newUserId\", data.id);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept-Language",
+								"value": "is",
+								"disabled": true
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "radiation",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"John\",\n    \"email\": \"m@mail.ru\",\n    \"phone\": \"667 0995\",\n    \"address\": \"Nowhere Street\"\n}"
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/users/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"users",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT Change name",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "32be85c1-e763-46a1-9654-97e20486a22d",
+								"exec": [
+									"pm.test(\"Response is 200 OK\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"var data = JSON.parse(responseBody);",
+									"tests[\"Test if name now Johnny\"] = data.name === \"Johnny\";"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept-Language",
+								"value": "is",
+								"disabled": true
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "radiation",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Johnny\",\n    \"email\": \"m@mail.ru\",\n    \"phone\": \"667 0995\",\n    \"address\": \"Nowhere Street\"\n}"
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/users/{{newUserId}}",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"users",
+								"{{newUserId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "32be85c1-e763-46a1-9654-97e20486a22d",
+								"exec": [
+									"pm.test(\"Response is 204 OK\", function () {",
+									"    pm.response.to.have.status(204);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept-Language",
+								"value": "is",
+								"disabled": true
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "radiation",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/users/{{newUserId}}",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"users",
+								"{{newUserId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Assert User is deleted",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "32be85c1-e763-46a1-9654-97e20486a22d",
+								"exec": [
+									"pm.test(\"Response is 404 OK\", function () {",
+									"    pm.response.to.have.status(404);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept-Language",
+								"value": "is",
+								"disabled": true
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "radiation",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/users/{{newUserId}}",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"users",
+								"{{newUserId}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Loan",
+			"item": [
+				{
+					"name": "POST Create User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "32be85c1-e763-46a1-9654-97e20486a22d",
+								"exec": [
+									"pm.test(\"Response is 201 OK\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									"",
+									"var data = JSON.parse(responseBody);",
+									"pm.globals.set(\"newUserId\", data.id);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"disabled": true,
+								"key": "Accept-Language",
+								"value": "is"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"disabled": true,
+								"key": "Authorization",
+								"value": "radiation"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"John\",\n    \"email\": \"m@mail.ru\",\n    \"phone\": \"667 0995\",\n    \"address\": \"Nowhere Street\"\n}"
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/users/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"users",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST Create Tape",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "32be85c1-e763-46a1-9654-97e20486a22d",
+								"exec": [
+									"pm.test(\"Response is 201 OK\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									"",
+									"var data = JSON.parse(responseBody);",
+									"pm.globals.set(\"newTapeId\", data.id);",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"disabled": true,
+								"key": "Accept-Language",
+								"value": "is"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"disabled": true,
+								"key": "Authorization",
+								"value": "radiation"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \r\n    \"Title\": \"Silence of The Lambs\",\r\n    \"DirectorName\": \"Jonathan Demme\",\r\n    \"Type\": \"VHS\",\r\n    \"ReleaseDate\": \"1991-01-01\",\r\n    \"Eidr\": \"10.5240/D9D1-E514-5FD2-8941-9225-I\"\r\n}"
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/tapes/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"tapes",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST Register Loan",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "32be85c1-e763-46a1-9654-97e20486a22d",
+								"exec": [
+									"pm.test(\"Response is 201 OK\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"disabled": true,
+								"key": "Accept-Language",
+								"value": "is"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"disabled": true,
+								"key": "Authorization",
+								"value": "radiation"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \r\n    \"TapeId\": \"{{newTapeId}}\",\r\n    \"FriendId\": \"{{newUserId}}\",\r\n    \"BorrowDate\": \"2018-12-12\",\r\n    \"ReturnDate\": null\r\n}\r\n"
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/users/{{newUserId}}/tapes/{{newTapeId}}",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"users",
+								"{{newUserId}}",
+								"tapes",
+								"{{newTapeId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET User Loan",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "32be85c1-e763-46a1-9654-97e20486a22d",
+								"exec": [
+									"pm.test(\"Response is 200 OK\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"disabled": true,
+								"key": "Accept-Language",
+								"value": "is"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"disabled": true,
+								"key": "Authorization",
+								"value": "radiation"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \r\n    \"Title\": \"Silence of The Lambs\",\r\n    \"DirectorName\": \"Jonathan Demme\",\r\n    \"Type\": \"VHS\",\r\n    \"ReleaseDate\": \"1991-01-01\",\r\n    \"Eidr\": \"10.5240/D9D1-E514-5FD2-8941-9225-I\"\r\n}"
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/users/{{newUserId}}/tapes",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"users",
+								"{{newUserId}}",
+								"tapes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT Update loan",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "32be85c1-e763-46a1-9654-97e20486a22d",
+								"exec": [
+									"pm.test(\"Response is 200 OK\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"disabled": true,
+								"key": "Accept-Language",
+								"value": "is"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"disabled": true,
+								"key": "Authorization",
+								"value": "radiation"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \r\n    \"TapeId\": \"{{newTapeId}}\",\r\n    \"FriendId\": \"{{newUserId}}\",\r\n    \"BorrowDate\": \"2017-12-12\"\r\n}\r\n"
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/users/{{newUserId}}/tapes/{{newTapeId}}",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"users",
+								"{{newUserId}}",
+								"tapes",
+								"{{newTapeId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE Return Tape",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "32be85c1-e763-46a1-9654-97e20486a22d",
+								"exec": [
+									"pm.test(\"Response is 204 OK\", function () {",
+									"    pm.response.to.have.status(204);",
+									"});",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"disabled": true,
+								"key": "Accept-Language",
+								"value": "is"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"disabled": true,
+								"key": "Authorization",
+								"value": "radiation"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \r\n    \"Title\": \"Silence of The Lambs\",\r\n    \"DirectorName\": \"Jonathan Demme\",\r\n    \"Type\": \"VHS\",\r\n    \"ReleaseDate\": \"1991-01-01\",\r\n    \"Eidr\": \"10.5240/D9D1-E514-5FD2-8941-9225-I\"\r\n}"
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/users/{{newUserId}}/tapes/{{newTapeId}}",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"users",
+								"{{newUserId}}",
+								"tapes",
+								"{{newTapeId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE Tape",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "32be85c1-e763-46a1-9654-97e20486a22d",
+								"exec": [
+									"pm.test(\"Response is 204 OK\", function () {",
+									"    pm.response.to.have.status(204);",
+									"});",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"disabled": true,
+								"key": "Accept-Language",
+								"value": "is"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"disabled": true,
+								"key": "Authorization",
+								"value": "radiation"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/tapes/{{newTapeId}}",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"tapes",
+								"{{newTapeId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "32be85c1-e763-46a1-9654-97e20486a22d",
+								"exec": [
+									"pm.test(\"Response is 204 OK\", function () {",
+									"    pm.response.to.have.status(204);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"disabled": true,
+								"key": "Accept-Language",
+								"value": "is"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"disabled": true,
+								"key": "Authorization",
+								"value": "radiation"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/users/{{newUserId}}",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"users",
+								"{{newUserId}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Review",
+			"item": [
+				{
+					"name": "POST Create Tape NewTape",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "32be85c1-e763-46a1-9654-97e20486a22d",
+								"exec": [
+									"pm.test(\"Response is 201 OK\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									"",
+									"var data = JSON.parse(responseBody);",
+									"pm.globals.set(\"newTapeId\", data.id);",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept-Language",
+								"value": "is",
+								"disabled": true
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "radiation",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \r\n    \"Title\": \"Silence of The Lambs\",\r\n    \"DirectorName\": \"Jonathan Demme\",\r\n    \"Type\": \"VHS\",\r\n    \"ReleaseDate\": \"1991-01-01\",\r\n    \"Eidr\": \"10.5240/D9D1-E514-5FD2-8941-9225-I\"\r\n}"
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/tapes/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"tapes",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST Create User NewUser",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "32be85c1-e763-46a1-9654-97e20486a22d",
+								"exec": [
+									"pm.test(\"Response is 201 OK\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									"",
+									"var data = JSON.parse(responseBody);",
+									"pm.globals.set(\"newUserId\", data.id);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept-Language",
+								"value": "is",
+								"disabled": true
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "radiation",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"John\",\n    \"email\": \"m@mail.ru\",\n    \"phone\": \"667 0995\",\n    \"address\": \"Nowhere Street\"\n}"
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/users/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"users",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST Create User Review For New Tape",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "32be85c1-e763-46a1-9654-97e20486a22d",
+								"exec": [
+									"pm.test(\"Response is 201 OK\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept-Language",
+								"value": "is",
+								"disabled": true
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "radiation",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"FriendId\": \"{{newUserId}}\",\n    \"TapeId\": \"{{newTapeId}}\",\n    \"ReviewInput\": \"this was a great movie\",\n    \"Rating\": 5\n    \n}"
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/users/{{newUserId}}/reviews/{{newTapeId}}",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"users",
+								"{{newUserId}}",
+								"reviews",
+								"{{newTapeId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST Create User Review For New Tape Copy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "32be85c1-e763-46a1-9654-97e20486a22d",
+								"exec": [
+									"pm.test(\"Response is 200 OK\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept-Language",
+								"value": "is",
+								"disabled": true
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "radiation",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"FriendId\": \"{{newUserId}}\",\n    \"TapeId\": \"{{newTapeId}}\",\n    \"ReviewInput\": \"this was a bad movie\",\n    \"Rating\": 5\n    \n}"
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/users/{{newUserId}}/reviews/{{newTapeId}}",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"users",
+								"{{newUserId}}",
+								"reviews",
+								"{{newTapeId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET User Review For New Tape",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "32be85c1-e763-46a1-9654-97e20486a22d",
+								"exec": [
+									"pm.test(\"Response is 200 OK\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"disabled": true,
+								"key": "Accept-Language",
+								"value": "is"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"disabled": true,
+								"key": "Authorization",
+								"value": "radiation"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"FriendId\": \"{{newUserId}}\",\n    \"TapeId\": \"{{newTapeId}}\",\n    \"ReviewInput\": \"this was a bad movie\"\n    \n}"
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/users/{{newUserId}}/reviews",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"users",
+								"{{newUserId}}",
+								"reviews"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET User Review For New Tape",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "32be85c1-e763-46a1-9654-97e20486a22d",
+								"exec": [
+									"pm.test(\"Response is 200 OK\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"disabled": true,
+								"key": "Accept-Language",
+								"value": "is"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"disabled": true,
+								"key": "Authorization",
+								"value": "radiation"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"FriendId\": \"{{newUserId}}\",\n    \"TapeId\": \"{{newTapeId}}\",\n    \"ReviewInput\": \"this was a bad movie\"\n    \n}"
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/users/{{newUserId}}/reviews/{{newTapeId}}",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"users",
+								"{{newUserId}}",
+								"reviews",
+								"{{newTapeId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET User Review For all tapes",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "32be85c1-e763-46a1-9654-97e20486a22d",
+								"exec": [
+									"pm.test(\"Response is 200 OK\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"disabled": true,
+								"key": "Accept-Language",
+								"value": "is"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"disabled": true,
+								"key": "Authorization",
+								"value": "radiation"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"FriendId\": \"{{newUserId}}\",\n    \"TapeId\": \"{{newTapeId}}\",\n    \"ReviewInput\": \"this was a bad movie\"\n    \n}"
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/tapes/reviews",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"tapes",
+								"reviews"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET all reviews for a given tape",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "32be85c1-e763-46a1-9654-97e20486a22d",
+								"exec": [
+									"pm.test(\"Response is 200 OK\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"disabled": true,
+								"key": "Accept-Language",
+								"value": "is"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"disabled": true,
+								"key": "Authorization",
+								"value": "radiation"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"FriendId\": \"{{newUserId}}\",\n    \"TapeId\": \"{{newTapeId}}\",\n    \"ReviewInput\": \"this was a bad movie\"\n    \n}"
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/tapes/{{newTapeId}}",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"tapes",
+								"{{newTapeId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET a user’s review for a tape",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "32be85c1-e763-46a1-9654-97e20486a22d",
+								"exec": [
+									"pm.test(\"Response is 200 OK\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"disabled": true,
+								"key": "Accept-Language",
+								"value": "is"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"disabled": true,
+								"key": "Authorization",
+								"value": "radiation"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"FriendId\": \"{{newUserId}}\",\n    \"TapeId\": \"{{newTapeId}}\",\n    \"ReviewInput\": \"this was a bad movie\"\n    \n}"
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/tapes/{{newTapeId}}/reviews/{{newUserId}}",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"tapes",
+								"{{newTapeId}}",
+								"reviews",
+								"{{newUserId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE a user’s review for a tape Copy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "32be85c1-e763-46a1-9654-97e20486a22d",
+								"exec": [
+									"pm.test(\"Response is 204 OK\", function () {",
+									"    pm.response.to.have.status(204);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"disabled": true,
+								"key": "Accept-Language",
+								"value": "is"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"disabled": true,
+								"key": "Authorization",
+								"value": "radiation"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/users/{{newUserId}}/reviews/{{newTapeId}}",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"users",
+								"{{newUserId}}",
+								"reviews",
+								"{{newTapeId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Assert Review Is Deleted",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "32be85c1-e763-46a1-9654-97e20486a22d",
+								"exec": [
+									"pm.test(\"Response is 404 \", function () {",
+									"    pm.response.to.have.status(404);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"disabled": true,
+								"key": "Accept-Language",
+								"value": "is"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"disabled": true,
+								"key": "Authorization",
+								"value": "radiation"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/users/{{newUserId}}/reviews/{{newTapeId}}",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"users",
+								"{{newUserId}}",
+								"reviews",
+								"{{newTapeId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE Tape Copy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "32be85c1-e763-46a1-9654-97e20486a22d",
+								"exec": [
+									"pm.test(\"Response is 204 OK\", function () {",
+									"    pm.response.to.have.status(204);",
+									"});",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept-Language",
+								"value": "is",
+								"disabled": true
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "radiation",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/tapes/{{newTapeId}}",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"tapes",
+								"{{newTapeId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE User Copy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "32be85c1-e763-46a1-9654-97e20486a22d",
+								"exec": [
+									"pm.test(\"Response is 204 OK\", function () {",
+									"    pm.response.to.have.status(204);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept-Language",
+								"value": "is",
+								"disabled": true
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "radiation",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/users/{{newUserId}}",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"users",
+								"{{newUserId}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Reccomendation",
+			"item": [
+				{
+					"name": "POST Create User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "32be85c1-e763-46a1-9654-97e20486a22d",
+								"exec": [
+									"pm.test(\"Response is 201 OK\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									"",
+									"var data = JSON.parse(responseBody);",
+									"pm.globals.set(\"newUserId\", data.id);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept-Language",
+								"value": "is",
+								"disabled": true
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "radiation",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"John\",\n    \"email\": \"m@mail.ru\",\n    \"phone\": \"667 0995\",\n    \"address\": \"Nowhere Street\"\n}"
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/users/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"users",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST Create Tape NewTape",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "32be85c1-e763-46a1-9654-97e20486a22d",
+								"exec": [
+									"pm.test(\"Response is 201 OK\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									"",
+									"var data = JSON.parse(responseBody);",
+									"pm.globals.set(\"newTapeId\", data.id);",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"disabled": true,
+								"key": "Accept-Language",
+								"value": "is"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"disabled": true,
+								"key": "Authorization",
+								"value": "radiation"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \r\n    \"Title\": \"Silence of The Lambs\",\r\n    \"DirectorName\": \"Jonathan Demme\",\r\n    \"Type\": \"VHS\",\r\n    \"ReleaseDate\": \"1991-01-01\",\r\n    \"Eidr\": \"10.5240/D9D1-E514-5FD2-8941-9225-I\"\r\n}"
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/tapes/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"tapes",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Tape1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "32be85c1-e763-46a1-9654-97e20486a22d",
+								"exec": [
+									"pm.test(\"Response is 201 OK\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									"",
+									"var data = JSON.parse(responseBody);",
+									"pm.globals.set(\"tape1\", data.id);",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"disabled": true,
+								"key": "Accept-Language",
+								"value": "is"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"disabled": true,
+								"key": "Authorization",
+								"value": "radiation"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \r\n    \"Title\": \"Pulp Fictions\",\r\n    \"DirectorName\": \"Jonathan Demme\",\r\n    \"Type\": \"Betamax\",\r\n    \"ReleaseDate\": \"1991-01-01\",\r\n    \"Eidr\": \"10.5240/D9D1-E514-5FD2-8941-9225-I\"\r\n}"
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/tapes/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"tapes",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST Create User Review for TAPE1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "32be85c1-e763-46a1-9654-97e20486a22d",
+								"exec": [
+									"pm.test(\"Response is 201 OK\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"disabled": true,
+								"key": "Accept-Language",
+								"value": "is"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"disabled": true,
+								"key": "Authorization",
+								"value": "radiation"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"FriendId\": 1,\n    \"TapeId\": \"{{tape1}}\",\n    \"ReviewInput\": \"this was a great movie\",\n    \"Rating\": 5\n    \n}"
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/users/1/reviews/{{tape1}}",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"users",
+								"1",
+								"reviews",
+								"{{tape1}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Tape2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "32be85c1-e763-46a1-9654-97e20486a22d",
+								"exec": [
+									"pm.test(\"Response is 201 OK\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									"",
+									"var data = JSON.parse(responseBody);",
+									"pm.globals.set(\"tape2\", data.id);",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept-Language",
+								"value": "is",
+								"disabled": true
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "radiation",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \r\n    \"Title\": \"Brain Dead\",\r\n    \"DirectorName\": \"Jonathan Demme\",\r\n    \"Type\": \"VHS\",\r\n    \"ReleaseDate\": \"1991-01-01\",\r\n    \"Eidr\": \"10.5240/D9D1-E514-5FD2-8941-9225-I\"\r\n}"
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/tapes/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"tapes",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST Create User Review for TAPE2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "32be85c1-e763-46a1-9654-97e20486a22d",
+								"exec": [
+									"pm.test(\"Response is 201 OK\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"disabled": true,
+								"key": "Accept-Language",
+								"value": "is"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"disabled": true,
+								"key": "Authorization",
+								"value": "radiation"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"FriendId\": 1,\n    \"TapeId\": \"{{tape2}}\",\n    \"ReviewInput\": \"this was a OK movie\",\n    \"Rating\": 3\n    \n}"
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/users/1/reviews/{{tape2}}",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"users",
+								"1",
+								"reviews",
+								"{{tape2}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Tape3",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "32be85c1-e763-46a1-9654-97e20486a22d",
+								"exec": [
+									"pm.test(\"Response is 201 OK\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									"",
+									"var data = JSON.parse(responseBody);",
+									"pm.globals.set(\"tape3\", data.id);",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept-Language",
+								"value": "is",
+								"disabled": true
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "radiation",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \r\n    \"Title\": \"Silence of The Lambs\",\r\n    \"DirectorName\": \"Jonathan Demme\",\r\n    \"Type\": \"VHS\",\r\n    \"ReleaseDate\": \"1991-01-01\",\r\n    \"Eidr\": \"10.5240/D9D1-E514-5FD2-8941-9225-I\"\r\n}"
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/tapes/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"tapes",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST Create User Review for TAPE3",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "32be85c1-e763-46a1-9654-97e20486a22d",
+								"exec": [
+									"pm.test(\"Response is 201 OK\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"disabled": true,
+								"key": "Accept-Language",
+								"value": "is"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"disabled": true,
+								"key": "Authorization",
+								"value": "radiation"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"FriendId\": 1,\n    \"TapeId\": \"{{tape3}}\",\n    \"ReviewInput\": \"this was a great movie\",\n    \"Rating\": 5\n    \n}"
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/users/1/reviews/{{tape3}}",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"users",
+								"1",
+								"reviews",
+								"{{tape3}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Tape4",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "32be85c1-e763-46a1-9654-97e20486a22d",
+								"exec": [
+									"pm.test(\"Response is 201 OK\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									"",
+									"var data = JSON.parse(responseBody);",
+									"pm.globals.set(\"tape4\", data.id);",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept-Language",
+								"value": "is",
+								"disabled": true
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "radiation",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \r\n    \"Title\": \"TMT\",\r\n    \"DirectorName\": \"Jonathan Demme\",\r\n    \"Type\": \"Betamax\",\r\n    \"ReleaseDate\": \"1998-01-01\",\r\n    \"Eidr\": \"10.5240/D9D1-E514-5FD2-8941-9225-I\"\r\n}"
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/tapes/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"tapes",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST Create User Review for TAPE4",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "32be85c1-e763-46a1-9654-97e20486a22d",
+								"exec": [
+									"pm.test(\"Response is 201 OK\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"disabled": true,
+								"key": "Accept-Language",
+								"value": "is"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"disabled": true,
+								"key": "Authorization",
+								"value": "radiation"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"FriendId\": 1,\n    \"TapeId\": \"{{tape4}}\",\n    \"ReviewInput\": \"this was a terrible movie\",\n    \"Rating\": 1\n    \n}"
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/users/1/reviews/{{tape4}}",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"users",
+								"1",
+								"reviews",
+								"{{tape4}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Tape5",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "32be85c1-e763-46a1-9654-97e20486a22d",
+								"exec": [
+									"pm.test(\"Response is 201 OK\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									"",
+									"var data = JSON.parse(responseBody);",
+									"pm.globals.set(\"tape5\", data.id);",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept-Language",
+								"value": "is",
+								"disabled": true
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "radiation",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \r\n    \"Title\": \"Hannibal\",\r\n    \"DirectorName\": \"Jonathan Demme\",\r\n    \"Type\": \"VHS\",\r\n    \"ReleaseDate\": \"1991-01-01\",\r\n    \"Eidr\": \"10.5240/D9D1-E514-5FD2-8941-9225-I\"\r\n}"
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/tapes/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"tapes",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST Create User Review for TAPE5",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "32be85c1-e763-46a1-9654-97e20486a22d",
+								"exec": [
+									"pm.test(\"Response is 201 OK\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept-Language",
+								"value": "is",
+								"disabled": true
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "radiation",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"FriendId\": 1,\n    \"TapeId\": \"{{tape5}}\",\n    \"ReviewInput\": \"this was a great movie\",\n    \"Rating\": 4\n    \n}"
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/users/1/reviews/{{tape5}}",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"users",
+								"1",
+								"reviews",
+								"{{tape5}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST Create User Review For New Tape",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "32be85c1-e763-46a1-9654-97e20486a22d",
+								"exec": [
+									"pm.test(\"Response is 201 OK\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept-Language",
+								"value": "is",
+								"disabled": true
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "radiation",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"FriendId\": \"{{newUserId}}\",\n    \"TapeId\": \"{{newTapeId}}\",\n    \"ReviewInput\": \"this was a great movie\",\n    \"Rating\": 5\n    \n}"
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/users/{{newUserId}}/reviews/{{newTapeId}}",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"users",
+								"{{newUserId}}",
+								"reviews",
+								"{{newTapeId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST Register Loan",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "32be85c1-e763-46a1-9654-97e20486a22d",
+								"exec": [
+									"pm.test(\"Response is 201 OK\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"disabled": true,
+								"key": "Accept-Language",
+								"value": "is"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"disabled": true,
+								"key": "Authorization",
+								"value": "radiation"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \r\n    \"TapeId\": \"{{newTapeId}}\",\r\n    \"FriendId\": \"{{newUserId}}\",\r\n    \"BorrowDate\": \"2018-12-12\",\r\n    \"ReturnDate\": null\r\n}\r\n"
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/users/{{newUserId}}/tapes/{{newTapeId}}",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"users",
+								"{{newUserId}}",
+								"tapes",
+								"{{newTapeId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE Return Tape",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "32be85c1-e763-46a1-9654-97e20486a22d",
+								"exec": [
+									"pm.test(\"Response is 204 OK\", function () {",
+									"    pm.response.to.have.status(204);",
+									"});",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"disabled": true,
+								"key": "Accept-Language",
+								"value": "is"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"disabled": true,
+								"key": "Authorization",
+								"value": "radiation"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/users/{{newUserId}}/tapes/{{newTapeId}}",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"users",
+								"{{newUserId}}",
+								"tapes",
+								"{{newTapeId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Get Reccomendations",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "32be85c1-e763-46a1-9654-97e20486a22d",
+								"exec": [
+									"pm.test(\"Response is 200 OK\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"disabled": true,
+								"key": "Accept-Language",
+								"value": "is"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"disabled": true,
+								"key": "Authorization",
+								"value": "radiation"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/users/{{newUserId}}/recommendation",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"users",
+								"{{newUserId}}",
+								"recommendation"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE NewTape",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "32be85c1-e763-46a1-9654-97e20486a22d",
+								"exec": [
+									"pm.test(\"Response is 204 OK\", function () {",
+									"    pm.response.to.have.status(204);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept-Language",
+								"value": "is",
+								"disabled": true
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "radiation",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/tapes/{{newTapeId}}",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"tapes",
+								"{{newTapeId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE Tape1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "32be85c1-e763-46a1-9654-97e20486a22d",
+								"exec": [
+									"pm.test(\"Response is 204 OK\", function () {",
+									"    pm.response.to.have.status(204);",
+									"});",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept-Language",
+								"value": "is",
+								"disabled": true
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "radiation",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/tapes/{{tape1}}",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"tapes",
+								"{{tape1}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE Tape2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "32be85c1-e763-46a1-9654-97e20486a22d",
+								"exec": [
+									"pm.test(\"Response is 204 OK\", function () {",
+									"    pm.response.to.have.status(204);",
+									"});",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept-Language",
+								"value": "is",
+								"disabled": true
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "radiation",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/tapes/{{tape2}}",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"tapes",
+								"{{tape2}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE Tape3",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "32be85c1-e763-46a1-9654-97e20486a22d",
+								"exec": [
+									"pm.test(\"Response is 204 OK\", function () {",
+									"    pm.response.to.have.status(204);",
+									"});",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"disabled": true,
+								"key": "Accept-Language",
+								"value": "is"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"disabled": true,
+								"key": "Authorization",
+								"value": "radiation"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/tapes/{{tape3}}",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"tapes",
+								"{{tape3}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE Tape4",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "32be85c1-e763-46a1-9654-97e20486a22d",
+								"exec": [
+									"pm.test(\"Response is 204 OK\", function () {",
+									"    pm.response.to.have.status(204);",
+									"});",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept-Language",
+								"value": "is",
+								"disabled": true
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "radiation",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/tapes/{{tape4}}",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"tapes",
+								"{{tape4}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE Tape5",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "32be85c1-e763-46a1-9654-97e20486a22d",
+								"exec": [
+									"pm.test(\"Response is 204 OK\", function () {",
+									"    pm.response.to.have.status(204);",
+									"});",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept-Language",
+								"value": "is",
+								"disabled": true
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "radiation",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/api/tapes/{{tape5}}",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"tapes",
+								"{{tape5}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
