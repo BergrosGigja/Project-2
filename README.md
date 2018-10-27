@@ -1,4 +1,4 @@
-# Project 2: More Videotapes Galore :vhs:
+# More Videotapes Galore :vhs:
 ## Project 2 for T-302-HONN
 
 Áslákur’s cousin, Dósóþeus Tímóteusson (a well known poet and philosopher), took a course on software design and construction and has offered to design the system. You’ve graciously agreed to help out by implementing the system based Dósóþeus’s designs.
